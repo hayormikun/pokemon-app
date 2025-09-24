@@ -4,8 +4,13 @@ import { useState, useEffect, useRef } from 'react';
 import { PokemonCard } from '@/components/PokemonCard';
 import { PokemonFilters, SortOption } from '@/components/PokemonFilters';
 import { useFavorites } from '@/hooks/useFavorites';
+import { Pokemon } from '@/services/pokemonApi';
 
-export function PokemonListClient({ initialPokemon }) {
+type Props = {
+  initialPokemon: Pokemon[]
+}
+
+export function PokemonListClient({ initialPokemon }: Props) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState<SortOption>('id-asc');
