@@ -41,7 +41,8 @@ export function PokemonListClient({ initialPokemon }: Props) {
   async function fetchNextPage() {
     setIsFetchingNextPage(true);
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/pokemon?offset=${nextOffset}&limit=40`);
+      const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
+      const res = await fetch(`${BASE_URL}/pokemon?offset=${nextOffset}&limit=40`);
       if (!res.ok) throw new Error('Failed to fetch');
       const data = await res.json();
       setAllPokemon((prev) => [...prev, ...data.results]);

@@ -2,7 +2,8 @@ import { PokemonListClient } from '@/components/PokemonListClient';
 import { Heading } from '@/components/Heading';
 
 export default async function Home() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/pokemon?limit=100`);
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
+  const res = await fetch(`${BASE_URL}/pokemon?limit=100`);
   const data = await res.json();
 
   return (
