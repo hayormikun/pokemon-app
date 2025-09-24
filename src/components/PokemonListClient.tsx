@@ -36,7 +36,7 @@ export function PokemonListClient({ initialPokemon }) {
   async function fetchNextPage() {
     setIsFetchingNextPage(true);
     try {
-      const res = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${nextOffset}&limit=40`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/pokemon?offset=${nextOffset}&limit=40`);
       if (!res.ok) throw new Error('Failed to fetch');
       const data = await res.json();
       setAllPokemon((prev) => [...prev, ...data.results]);
@@ -139,7 +139,7 @@ export function PokemonListClient({ initialPokemon }) {
         )}
         {activeTab === 'all' && !hasNextPage && allPokemon.length > 0 && !searchTerm && selectedTypes.length === 0 && (
           <div className="text-center py-4 text-gray-500">
-            You've reached the end of the Pokemon list!
+            You&apos;ve reached the end of the Pokemon list!
           </div>
         )}
       </section>

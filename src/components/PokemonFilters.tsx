@@ -167,7 +167,7 @@ export const PokemonFilters = ({
           <div className="flex flex-wrap gap-2">
             {localSearchTerm && (
               <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                Search: "{localSearchTerm}"
+                Search: &quot;{localSearchTerm}&quot;
               </span>
             )}
             {selectedTypes.map((type) => (
