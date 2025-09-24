@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Pokémon App
 
-## Getting Started
+A sleek, responsive Pokémon browser built with Next.js 14 (App Router), TypeScript, and server-side rendering. Explore all 1,302 Pokémon from the official PokéAPI , search by name, filter by type, infinitely scroll through results, and save your favorites — all with a clean UI and persistent, shareable URLs.
 
-First, run the development server:
+🔗 Live Demo: https://pokemon-app-mqcu.vercel.app
 
-```bash
+✨ Features
+Server-Side Rendered (SSR) for fast initial load and SEO
+
+Infinite scroll using TanStack Query (useInfiniteQuery) — loads 20 Pokémon at a time as you scroll
+
+Real-time search — filter Pokémon by name with debounced input (400ms)
+
+Type-based filtering — narrow results by Pokémon type (e.g., Fire, Water, Psychic)
+
+Favorites system — toggle ❤️ to save Pokémon; persisted in localStorage
+
+Responsive design — works seamlessly on mobile, tablet, and desktop
+
+🛠️ How to Run
+Clone the repository
+bash
+
+git clone https://github.com/hayormikun/pokemon-app
+
+cd pokemon-app
+
+Install dependencies
+
+bash
+npm install
+
+Start the development server
+
+bash
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open your browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Visit http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+✅ No API keys, environment variables, or backend required — powered entirely by the public PokéAPI. 
 
-## Learn More
+🏗️ Architecture Overview
 
-To learn more about Next.js, take a look at the following resources:
+Data Layer
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+TanStack Query manages all data fetching:
+useInfiniteQuery for paginated Pokémon list (offset/limit)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Automatic request cancellation on input changes
 
-## Deploy on Vercel
+Background refetching and 5-minute cache stale time
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Parallel detail queries for type data (used in filtering)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Direct sprite URLs avoid extra API calls:
+
+Dynamic route for details: /pokemon/[id] (e.g., /pokemon/25)
+
+UI/UX
+
+Skeleton loaders during data fetches
+
+Empty states for no results or empty favorites
+
+Optimistic UI for favorite toggles
+
+Debounced search to prevent excessive requests
+
+⚖️ Trade-offs & Current Limitations
+
+✅ Favorites: Functional UI but Partially Integrated
+Toggling works but doesn’t persist correctly
+
+🚀 What’s Next?
+Fix favorites sync in detail view and update UI instantly
+Improve header text to show dynamic count (e.g., “Showing 1–20 of 1,302”)
+
+Pokémon App delivers a fast, intuitive, and resilient experience by combining Next.js SSR, TanStack Query’s powerful data synchronization, and thoughtful UX — all in a clean, maintainable codebase. Ready to evolve with your favorite features! 🎮⚡
